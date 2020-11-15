@@ -1,0 +1,79 @@
+from flask import Flask, render_template, jsonify, request
+from pymongo import MongoClient  # pymongo를 임포트 하기(패키지 인스톨 먼저 해야겠죠?)
+
+app = Flask(__name__)
+
+client = MongoClient('localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
+db = client.workout  # 'dbsparta'라는 이름의 db를 만듭니다.
+
+
+## HTML을 주는 부분
+@app.route('/')
+def home():
+    return render_template('maintemplate.html')
+
+# @app.route('/upload', methods=['POST'])
+# def uploadvideo():
+#     #1.클라이언트가 준 비디오 정보를 가져오기
+#     title_receive = request.form['title_give']
+#     comment_receive = request.form['comment_give']
+#     category_receive = request.form['category_give']
+#     video_receive = request.form['video_give']
+#     #2.비디오 정보를 db에 저장하기
+#     video = {'title':title_receive, 'comment':comment_receive, 'category':category_receive, 'video':video_receive}
+#     db.workout.insert_one(video)
+#     #3.성공 여부 알려주기
+#     return jsonify({'result':'success','msg':'성공적으로 업로드 되었습니다!'})
+#
+# @app.route('/video1', methods = ['GET'])
+# def showvideo1():
+#     #1. db에서 첫번째 카테고리의 비디오를 가져온다
+#     chest_videos = list(db.workout.find({'category':'chest'},{'_id':False}))
+#     #2. 이를 클라이언트 서버로 쏴준다.
+#     return jsonify({'result':'success','chest_video':chest_videos})
+
+@app.route('/view_chest', methods = ['GET'])
+def watchvideo1():
+    #1. db에서 chest 카테고리의 비디오를 가져온다.
+    chest_videos = list(db.workout.find({'type':'chest'},{'_id':False}))
+    #2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','chest':chest_videos})
+
+@app.route('/view_back', methods=['GET'])
+def watchvideo2():
+    # 1. db에서 back 카테고리의 비디오를 가져온다.
+    back_videos = list(db.workout.find({'type':'back'},{'_id':False}))
+    # 2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','back':back_videos})
+
+@app.route('/view_abs', methods=['GET'])
+def watchvideo3():
+    # 1. db에서 middle 카테고리의 비디오를 가져온다.
+    abs_videos = list(db.workout.find({'type':'abs'},{'_id':False}))
+    # 2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','abs':abs_videos})
+
+@app.route('/view_leg', methods=['GET'])
+def watchvideo4():
+    # 1. db에서 bottom 카테고리의 비디오를 가져온다.
+    leg_videos = list(db.workout.find({'type':'leg'},{'_id':False}))
+    # 2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','leg':leg_videos})
+
+@app.route('/view_shoulder', methods=['GET'])
+def watchvideo5():
+    # 1. db에서 exercise 카테고리의 비디오를 가져온다.
+    shoulder_videos = list(db.workout.find({'type':'shoulder'},{'_id':False}))
+    # 2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','shoulder':shoulder_videos})
+
+@app.route('/view_dumbbell', methods=['GET'])
+def watchvideo6():
+    # 1. db에서 tool 카테고리의 비디오를 가져온다.
+    dumbbell_videos = list(db.workout.find({'type':'dumbbell'},{'_id':False}))
+    # 2. 이를 client 서버로 쏴준다.
+    return jsonify({'result':'success','dumbbell':dumbbell_videos})
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True)
