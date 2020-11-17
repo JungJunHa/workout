@@ -18,9 +18,13 @@
 
     <title>Title page</title>
 
-    <link href="../css-main/main.97292821.css" rel="stylesheet">
+    <!--<link href="../css-main/main.97292821.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.97292821.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+
+
     <!-- Bootstrap core CSS -->
-    <link href="../css-main/all.css" rel="stylesheet">
+    <!--<link href="../css-main/all.css" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
     <!--<link rel="stylesheet" href="css/css/main.css"/>-->
     <!--ajax-->
@@ -68,21 +72,21 @@
 <!--</ol>-->
 <!--<div class="carousel-inner" role="listbox">-->
 <!--&lt;!&ndash; Slide One - Set the background image for this slide in the line below &ndash;&gt;-->
-<!--<div class="carousel-item active" style="background-image: url('statics/img8.jpg')">-->
+<!--<div class="carousel-item active" style="background-image: url('static/img8.jpg')">-->
 <!--<div class="carousel-caption d-none d-md-block">-->
 <!--<h3>Let's GYM!</h3>-->
 <!--<p>집에서도 헬스장에 온 것과 같이 운동해요</p>-->
 <!--</div>-->
 <!--</div>-->
 <!--&lt;!&ndash; Slide Two - Set the background image for this slide in the line below &ndash;&gt;-->
-<!--<div class="carousel-item" style="background-image: url('statics/img7.jpg')">-->
+<!--<div class="carousel-item" style="background-image: url('static/img7.jpg')">-->
 <!--<div class="carousel-caption d-none d-md-block">-->
 <!--<h3>Let's GYM!</h3>-->
 <!--<p>다른 사람들과 자신만의 팁을 공유해봐요</p>-->
 <!--</div>-->
 <!--</div>-->
 <!--&lt;!&ndash; Slide Three - Set the background image for this slide in the line below &ndash;&gt;-->
-<!--<div class="carousel-item" style="background-image: url('statics/img6.jpg')">-->
+<!--<div class="carousel-item" style="background-image: url('static/img6.jpg')">-->
 <!--<div class="carousel-caption d-none d-md-block">-->
 <!--<h3>Let's GYM!</h3>-->
 <!--<p>멋진 몸을 완성해봐요!</p>-->
@@ -102,7 +106,7 @@
 <header>
     <!-- Add your site or app content here -->
     <div class="background-image-container white-text-container"
-         style="background-image: url('../statics/gym2.jpg');background-position: center">
+         style="background-image: url('../static/gym2.jpg');background-position: center">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -127,7 +131,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-4">
-                <img src="../statics/chest.jpg" alt="" class="img-responsive">
+                <img src="../static/chest.jpg" alt="" class="img-responsive">
                 <h3 class="text-center">Consectetur</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet consectetur dolor. Phasellus
                     ut
@@ -135,14 +139,14 @@
             </div>
 
             <div class="col-xs-12 col-md-4">
-                <img src="../statics/gym.jpg" alt="" class="img-responsive">
+                <img src="../static/gym.jpg" alt="" class="img-responsive">
                 <h3 class="text-center">Malesuada</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet consectetur dolor. Phasellus
                     ut
                     lacus tellus. In pretium lobortis blandit.</p>
             </div>
             <div class="col-xs-12 col-md-4">
-                <img src="../statics/kettlebell.jpg" alt="" class="img-responsive">
+                <img src="../static/kettlebell.jpg" alt="" class="img-responsive">
                 <h3 class="text-center">Phasellus</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet consectetur dolor. Phasellus
                     ut
@@ -164,7 +168,9 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/chest.html">
-                        <img class="card-img-top" src="../statics/chest.jpg"
+                        <!--TODO:
+                        <a href="/showchest">-->
+                        <img class="card-img-top" src="../static/chest.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>
@@ -180,7 +186,7 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/back.html">
-                        <img class="card-img-top" src="../statics/back.jpg"
+                        <img class="card-img-top" src="../static/back.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>
@@ -197,7 +203,7 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/abs.html">
-                        <img class="card-img-top" src="../statics/img4.jpg"
+                        <img class="card-img-top" src="../static/img4.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>
@@ -213,7 +219,7 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/leg.html">
-                        <img class="card-img-top" src="../statics/leg.jpg"
+                        <img class="card-img-top" src="../static/leg.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>
@@ -230,7 +236,7 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/shoulder.html">
-                        <img class="card-img-top" src="../statics/exercise.jpg"
+                        <img class="card-img-top" src="../static/exercise.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>
@@ -246,7 +252,7 @@
             <div>
                 <div class="card-img">
                     <a href="../templates/dumbbell.html">
-                        <img class="card-img-top" src="../statics/kettlebell.jpg"
+                        <img class="card-img-top" src="../static/kettlebell.jpg"
                              style='border-radius:30px; height : 300px; width : 450px' alt=""/>
                         <!--<div class="overlay"><i class="fas fa-arrows-alt"></i></div>-->
                     </a>

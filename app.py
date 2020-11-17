@@ -1,6 +1,10 @@
 from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient  # pymongo를 임포트 하기(패키지 인스톨 먼저 해야겠죠?)
 
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+import os
+
 app = Flask(__name__)
 
 client = MongoClient('localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
@@ -11,6 +15,63 @@ db = client.workout  # 'dbsparta'라는 이름의 db를 만듭니다.
 @app.route('/')
 def home():
     return render_template('maintemplate.html')
+
+
+UPLOAD_FOLDER = '/Users/goodjungjun/Desktop/sparta/workout'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            file_dir = app.config['UPLOAD_FOLDER'] + '/static/storage'
+            file.save(os.path.join(file_dir, str(file.filename)))
+            return redirect("/")
+    return render_template('upload_video_test.html')
+
+
+@app.route('/showchest')
+def homechest():
+    return render_template('chest.html')
+
+@app.route('/showback')
+def homeback():
+    return render_template('back.html')
+
+@app.route('/showabs')
+def homeabs():
+    return render_template('abs.html')
+
+@app.route('/showleg')
+def homeleg():
+    return render_template('leg.html')
+
+@app.route('/showshoulder')
+def homeshoulder():
+    return render_template('shoulder.html')
+
+@app.route('/showdumbbell')
+def homedumbbell():
+    return render_template('dumbbell.html')
+
+
 
 # @app.route('/upload', methods=['POST'])
 # def uploadvideo():

@@ -11,7 +11,7 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css-videopage/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <!--JS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -113,7 +113,7 @@
                 </a>
             </div>
 
-            <div class="row" id='cards'>
+            <div class="row row-cols-1 row-cols-md-2" id='cards'>
 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100" style = 'margin-left: 130px;width: 560px;height: 100px'>
