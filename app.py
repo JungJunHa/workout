@@ -17,36 +17,6 @@ def home():
     return render_template('maintemplate.html')
 
 
-UPLOAD_FOLDER = '/Users/goodjungjun/Desktop/sparta/workout'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            file_dir = app.config['UPLOAD_FOLDER'] + '/static/storage'
-            file.save(os.path.join(file_dir, str(file.filename)))
-            return redirect("/")
-    return render_template('upload_video_test.html')
-
-
 @app.route('/showchest')
 def homechest():
     return render_template('chest.html')
@@ -95,9 +65,11 @@ def homedumbbell():
 
 @app.route('/view_chest', methods = ['GET'])
 def watchvideo1():
+    print("START view_chest")
     #1. db에서 chest 카테고리의 비디오를 가져온다.
     chest_videos = list(db.workout.find({'type':'chest'},{'_id':False}))
     #2. 이를 client 서버로 쏴준다.
+    print("END view_chest")
     return jsonify({'result':'success','chest':chest_videos})
 
 @app.route('/view_back', methods=['GET'])

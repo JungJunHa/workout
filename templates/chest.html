@@ -22,7 +22,7 @@
     <link href="../css-videopage/shop-homepage.css" rel="stylesheet">
     <script>
         $(document).ready(function () {
-            showvideo10();
+            showvideo1();
         })
         function showvideo1() {
             $('#cards').empty();
@@ -33,7 +33,7 @@
                 data: {},
                 success: function (response) {
                     if (response['result'] == 'success') {
-                        let chests = response['chest_videos'];
+                        let chests = response['chest'];
                         //2.videocard 함수를 이용하여 쭉 보여준다.
                         for (let i = 0; i < chests.length; i++) {
                             videocard(chests[i]['url'], chests[i]['title'], chests[i]['video_url'])
@@ -46,9 +46,10 @@
         }
         function videocard(url, title, video_url) {
             //1.video card의 형식으로 video, comment등을 써서 cardbox에 append해준다.
-            let temp_html = `<div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="#"><iframe width="560" height="315"
+            let temp_html = ` <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100" style = 'margin-left: 40px;width: 700px;height: 100px'>
+                        <a href="#">
+                            <iframe width="700" height="390"
                         src="https://www.youtube.com/embed/${video_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
                         <div class="card-body">
                             <h4 class="card-title">
@@ -71,14 +72,14 @@
 
         <div class="col-lg-3">
 
-            <h1 class="my-4">Current videos</h1>
-            <div class="list-group">
-                <a href="../templates/chest.html" class="list-group-item">chest</a>
-                <a href="../templates/back.html" class="list-group-item">back</a>
-                <a href="../templates/abs.html" class="list-group-item">abs</a>
-                <a href="../templates/leg.html" class="list-group-item">leg</a>
-                <a href="../templates/shoulder.html" class="list-group-item">shoulder</a>
-                <a href="../templates/dumbbell.html" class="list-group-item">dumbbell</a>
+            <h1 class="my-4" style = 'text-align: center'><a href = '/'>Let's GYM!</a></h1>
+            <div class="list-group" style = 'text-align: center'>
+                <a href="/showchest" class="list-group-item">chest</a>
+                <a href="/showback" class="list-group-item">back</a>
+                <a href="/showabs" class="list-group-item">abs</a>
+                <a href="/showleg" class="list-group-item">leg</a>
+                <a href="/showshoulder" class="list-group-item">shoulder</a>
+                <a href="/showdumbbell" class="list-group-item">dumbbell</a>
             </div>
 
         </div>
@@ -94,13 +95,13 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                        <img style = 'background-image: url("/static/chest1.jpeg");background-size: cover;height: 400px;width: 800px;'>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                        <img class="d-block img-fluid" src="/static/chest2.jpeg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                        <img class="d-block img-fluid" src="/static/chest3.jpeg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -113,19 +114,19 @@
                 </a>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-2" id='cards'>
-
+            <!--<div class="row row-cols-1 row-cols-md-2" id='cards'>-->
+            <div id = 'cards'>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100" style = 'margin-left: 130px;width: 560px;height: 100px'>
+                    <div class="card h-100" style = 'margin-left: 40px;width: 700px;height: 100px'>
                         <a href="#">
-                            <iframe width="560" height="315"
+                            <iframe width="700" height="390"
                                     src="https://www.youtube.com/embed/BkS1-El_WlE" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen></iframe>
                         </a>
                         <div class="card-body" >
                             <h4 class="card-title">
-                                <a href="https://youtu.be/BkS1-El_WlE">The BEST HOME CHEST WORKOUT (NO EQUIPMENT NEEDED)
+                                <a href="https://youtu.be/BkS1-El_WlE" style = 'text-align: center'>The BEST HOME CHEST WORKOUT (NO EQUIPMENT NEEDED)
                                 </a>
                             </h4>
                         </div>
